@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LucroReal Casino — Bono de Bienvenida €500</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #D4A843;
+      --gold-light: #F0C96A;
+      --dark: #0A0A0F;
+      --dark2: #12121A;
+      --dark3: #1C1C28;
+      --text: #F0EDE6;
+      --muted: #8A8799;
+      --red: #E8453C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.95), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--text); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 10px 24px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 120px 40px 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(212,168,67,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(232,69,60,0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #0A0A0F 0%, #12121A 50%, #0F0F18 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,168,67,0.12);
+      border: 1px solid rgba(212,168,67,0.3);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 1.5s infinite; }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 12px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 .accent { color: var(--gold); display: block; }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-sub strong { color: var(--text); }
+
+    .bonus-box {
+      background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05));
+      border: 1px solid rgba(212,168,67,0.4);
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      position: relative;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .bonus-box::before {
+      content: 'BONO EXCLUSIVO';
+      position: absolute;
+      top: -10px; left: 20px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      letter-spacing: 1.5px;
+    }
+
+    .bonus-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .bonus-desc { font-size: 0.95rem; color: var(--muted); }
+    .bonus-desc strong { color: var(--text); }
+
+    .bonus-items {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .bonus-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .bonus-item::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #B8882A);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,67,0.4); }
+    .btn-primary:hover::after { opacity: 1; }
+
+    .btn-secondary {
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* HERO RIGHT — CARD */
+    .hero-visual {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeLeft 0.8s 0.3s ease both;
+    }
+
+    @keyframes fadeLeft { from{opacity:0;transform:translateY(-50%) translateX(40px)} to{opacity:1;transform:translateY(-50%) translateX(0)} }
+
+    .casino-card {
+      background: linear-gradient(135deg, #1C1C28, #14141E);
+      border: 1px solid rgba(212,168,67,0.2);
+      padding: 32px;
+      width: 320px;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(212,168,67,0.05);
+    }
+
+    .casino-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .slot-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .slot-item:hover { background: rgba(212,168,67,0.1); border-color: rgba(212,168,67,0.3); transform: scale(1.05); }
+
+    .card-stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.85rem;
+    }
+
+    .card-stat .label { color: var(--muted); }
+    .card-stat .value { color: var(--gold); font-weight: 600; }
+
+    /* STATS */
+    .stats {
+      padding: 60px 40px;
+      background: var(--dark2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* GAMES */
+    .games {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 48px;
+      line-height: 1.1;
+    }
+
+    .section-title span { color: var(--gold); }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .game-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .game-card:hover { transform: translateY(-4px); border-color: rgba(212,168,67,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .game-card:hover::before { transform: scaleX(1); }
+
+    .game-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+
+    .game-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .game-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+
+    .game-tag {
+      display: inline-block;
+      background: rgba(212,168,67,0.1);
+      border: 1px solid rgba(212,168,67,0.2);
+      color: var(--gold);
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* BONUS SECTION */
+    .bonus-section {
+      padding: 100px 40px;
+      background: var(--dark2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bonus-section::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .bonus-content { max-width: 1100px; margin: 0 auto; }
+
+    .bonus-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .bonus-card {
+      background: linear-gradient(135deg, var(--dark3), #16161F);
+      border: 1px solid rgba(212,168,67,0.15);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .bonus-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(212,168,67,0.08), var(--dark3));
+    }
+
+    .bonus-card.featured::before {
+      content: 'MÁS POPULAR';
+      position: absolute;
+      top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      letter-spacing: 1.5px;
+      white-space: nowrap;
+    }
+
+    .bonus-card:hover { transform: translateY(-4px); }
+
+    .bonus-card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+    .bonus-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .bonus-card-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .bonus-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* REGISTER */
+    .register {
+      padding: 100px 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .register .section-title { margin-bottom: 16px; }
+
+    .register-sub { color: var(--muted); margin-bottom: 48px; font-size: 1rem; }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    .form-input {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: var(--muted); }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .form-check input { margin-top: 2px; accent-color: var(--gold); }
+    .form-check a { color: var(--gold); }
+
+    .btn-full {
+      width: 100%;
+      padding: 18px;
+      margin-top: 8px;
+      clip-path: none;
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .trust-badge span { font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .footer-text { font-size: 0.78rem; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold); }
+
+    .age-warning {
+      display: inline-block;
+      background: rgba(232,69,60,0.1);
+      border: 1px solid rgba(232,69,60,0.3);
+      color: var(--red);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .games-grid { grid-template-columns: 1fr 1fr; }
+      .bonus-cards { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      header { padding: 16px 20px; }
+      .hero { padding: 100px 20px 60px; }
+    }
+
+    @media (max-width: 600px) {
+      .games-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Lucro<span>Real</span></div>
+  <button class="nav-cta" onclick="document.querySelector('.register').scrollIntoView({behavior:'smooth'})">Registrarse</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Casino Online España — Licencia DGOJ</div>
+    <h1>El Casino<span class="accent">que te paga.</span></h1>
+    <p class="hero-sub">
+      <strong>Más de 1.500 juegos</strong>, apuestas deportivas en vivo y los mejores bonos del mercado español. Retiros en menos de 24 horas.
+    </p>
+    <div class="bonus-box">
+      <div class="bonus-amount">€500</div>
+      <div class="bonus-desc">Bono de bienvenida + <strong>200 giros gratis</strong> en tu primer depósito</div>
+      <div class="bonus-items">
+        <div class="bonus-item">Sin código necesario</div>
+        <div class="bonus-item">Depósito mínimo €10</div>
+        <div class="bonus-item">Retiro inmediato</div>
+      </div>
+    </div>
+    <div class="cta-group">
+      <button class="btn-primary" onclick="document.querySelector('.register').scrollIntoView({behavior:'smooth'})">
+        Reclamar Bono →
+      </button>
+      <button class="btn-secondary">Ver todos los juegos</button>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="casino-card">
+      <div class="card-title">🎰 Juegos Destacados</div>
+      <div class="slots-grid">
+        <div class="slot-item">🃏</div>
+        <div class="slot-item">🎰</div>
+        <div class="slot-item">🎲</div>
+        <div class="slot-item">⚽</div>
+        <div class="slot-item">🏆</div>
+        <div class="slot-item">🎯</div>
+        <div class="slot-item">🔴</div>
+        <div class="slot-item">🃏</div>
+        <div class="slot-item">💎</div>
+      </div>
+      <div class="card-stat"><span class="label">Jugadores activos</span><span class="value">48.392</span></div>
+      <div class="card-stat"><span class="label">Jackpot actual</span><span class="value">€2.847.500</span></div>
+      <div class="card-stat"><span class="label">RTP promedio</span><span class="value">97.3%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">1.500+</div>
+      <div class="stat-label">Juegos disponibles</div>
+    </div>
+    <div>
+      <div class="stat-num">€500</div>
+      <div class="stat-label">Bono bienvenida</div>
+    </div>
+    <div>
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Retiro máximo</div>
+    </div>
+    <div>
+      <div class="stat-num">97.3%</div>
+      <div class="stat-label">RTP promedio</div>
+    </div>
+  </div>
+</div>
+
+<!-- GAMES -->
+<section class="games">
+  <div class="section-label">Catálogo de juegos</div>
+  <h2 class="section-title">Todo lo que<br><span>necesitas jugar</span></h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <span class="game-icon">🎰</span>
+      <div class="game-name">Tragaperras</div>
+      <div class="game-desc">Más de 1.200 slots de los mejores proveedores: NetEnt, Pragmatic Play, Evolution y más.</div>
+      <span class="game-tag">1.200+ juegos</span>
+    </div>
+    <div class="game-card">
+      <span class="game-icon">🃏</span>
+      <div class="game-name">Casino en Vivo</div>
+      <div class="game-desc">Blackjack, ruleta y baccarat con croupiers reales en tiempo real. La experiencia más auténtica.</div>
+      <span class="game-tag">En directo</span>
+    </div>
+    <div class="game-card">
+      <span class="game-icon">⚽</span>
+      <div class="game-name">Apuestas Deportivas</div>
+      <div class="game-desc">LaLiga, Premier League, Champions League y más de 30 deportes con las mejores cuotas del mercado.</div>
+      <span class="game-tag">Live betting</span>
+    </div>
+    <div class="game-card">
+      <span class="game-icon">🎲</span>
+      <div class="game-name">Ruleta</div>
+      <div class="game-desc">Ruleta europea, francesa y americana. Versiones clásicas y modernas con múltiples mesas.</div>
+      <span class="game-tag">Favorito</span>
+    </div>
+    <div class="game-card">
+      <span class="game-icon">🏆</span>
+      <div class="game-name">Torneos</div>
+      <div class="game-desc">Compite contra miles de jugadores en torneos semanales con premios de hasta €50.000.</div>
+      <span class="game-tag">Premios reales</span>
+    </div>
+    <div class="game-card">
+      <span class="game-icon">💎</span>
+      <div class="game-name">Jackpots Progresivos</div>
+      <div class="game-desc">Botes que crecen en tiempo real. El jackpot actual supera los 2 millones de euros.</div>
+      <span class="game-tag">€2.8M+ bote</span>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS SECTION -->
+<section class="bonus-section">
+  <div class="bonus-content">
+    <div class="section-label">Promociones</div>
+    <h2 class="section-title">Bonos que <span>valen la pena</span></h2>
+    <div class="bonus-cards">
+      <div class="bonus-card">
+        <div class="bonus-card-icon">🎁</div>
+        <div class="bonus-card-title">Primer Depósito</div>
+        <div class="bonus-card-amount">100% hasta €200</div>
+        <div class="bonus-card-desc">Dobla tu primer depósito. Mínimo €10. Sin código de bono necesario.</div>
+      </div>
+      <div class="bonus-card featured">
+        <div class="bonus-card-icon">⭐</div>
+        <div class="bonus-card-title">Bono de Bienvenida</div>
+        <div class="bonus-card-amount">€500 + 200 giros</div>
+        <div class="bonus-card-desc">El mejor paquete de bienvenida del mercado español. Válido los primeros 3 depósitos.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-card-icon">🔄</div>
+        <div class="bonus-card-title">Recarga Semanal</div>
+        <div class="bonus-card-amount">50% cada semana</div>
+        <div class="bonus-card-desc">Recarga tu cuenta cada semana y recibe hasta €100 adicionales automáticamente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register">
+  <div class="section-label">Únete ahora</div>
+  <h2 class="section-title">Crea tu cuenta<br><span>en 2 minutos</span></h2>
+  <p class="register-sub">Registro rápido, bono automático, sin complicaciones.</p>
+
+  <div class="form">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-input" placeholder="Tu nombre"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-input" placeholder="Tus apellidos"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" placeholder="tu@email.com"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-input" placeholder="Mínimo 8 caracteres"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-input"/>
+      </div>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" id="terms"/>
+      <label for="terms">Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a>. Confirmo que tengo más de 18 años.</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" id="bonus" checked/>
+      <label for="bonus">Quiero recibir mi <strong style="color:var(--gold)">bono de €500 + 200 giros gratis</strong></label>
+    </div>
+    <button class="btn-primary btn-full">Crear Cuenta y Reclamar Bono →</button>
+  </div>
+
+  <div class="trust-badges">
+    <div class="trust-badge"><span>🔒</span> SSL 256-bit</div>
+    <div class="trust-badge"><span>✅</span> Licencia DGOJ</div>
+    <div class="trust-badge"><span>💳</span> Pago seguro</div>
+    <div class="trust-badge"><span>🛡️</span> Juego responsable</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LucroReal</div>
+  <div class="age-warning">+18 | SOLO MAYORES DE EDAD</div>
+  <div class="footer-links">
+    <a href="#">Términos y Condiciones</a>
+    <a href="#">Política de Privacidad</a>
+    <a href="#">Juego Responsable</a>
+    <a href="#">Contacto</a>
+    <a href="#">Licencia DGOJ</a>
+  </div>
+  <div class="footer-text">
+    LucroReal Casino opera bajo licencia de la Dirección General de Ordenación del Juego (DGOJ) de España. El juego puede crear adicción. Juega con responsabilidad. Solo mayores de 18 años. Si crees que tienes un problema con el juego, llama al <strong>900 929 929</strong> (línea de ayuda gratuita).
+  </div>
+</footer>
+
+</body>
+</html>
