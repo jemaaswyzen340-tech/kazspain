@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LucroReal Casino — Bono de Bienvenida €500</title>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107283586', 'ym');
+      ym(107283586, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/107283586" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -823,7 +837,7 @@
       <input type="checkbox" id="bonus" checked/>
       <label for="bonus">Quiero recibir mi <strong style="color:var(--gold)">bono de €500 + 200 giros gratis</strong></label>
     </div>
-    <button class="btn-primary btn-full">Crear Cuenta y Reclamar Bono →</button>
+    <button class="btn-primary btn-full" id="register-btn" onclick="handleRegister()">Crear Cuenta y Reclamar Bono →</button>
   </div>
 
   <div class="trust-badges">
@@ -849,6 +863,15 @@
     LucroReal Casino opera bajo licencia de la Dirección General de Ordenación del Juego (DGOJ) de España. El juego puede crear adicción. Juega con responsabilidad. Solo mayores de 18 años. Si crees que tienes un problema con el juego, llama al <strong>900 929 929</strong> (línea de ayuda gratuita).
   </div>
 </footer>
+
+<script>
+  // Цель: клик по кнопке регистрации
+  function handleRegister() {
+    if (typeof ym !== 'undefined') {
+      ym(107283586, 'reachGoal', 'registration_click');
+    }
+  }
+</script>
 
 </body>
 </html>
